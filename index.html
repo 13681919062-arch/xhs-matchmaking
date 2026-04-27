@@ -1,0 +1,888 @@
+<!-- v2026-04-24-2058 export-fullres-wrap -->
+<!-- v2026-04-24-2024 layout-v4 -->
+<!-- v2026-04-24-2023 layout-v3 -->
+<!-- v2026-04-24-2022 layout-v2 -->
+<!-- v2026-04-24-2020 bigger-fonts -->
+<!-- v2026-04-24-2018 font+layout -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我有一个朋友 · PPT线上相亲大会</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FFF0EC;
+    --red: #E84057;
+    --blue: #4A7FD4;
+    --green: #4CAF50;
+    --dark: #2B2B2B;
+    --light-blue: #D6E8FF;
+    --pink: #FFCDD2;
+    --peach: #FFE0D6;
+    --yellow: #FFE066;
+  }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--dark);
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  /* ===== PART 1: KV Image ===== */
+  .part1 {
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .part1-inner {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .part1 img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ===== PART 2: Q&A Form ===== */
+  .part2 {
+    background: var(--bg);
+    padding: 24px 16px 40px;
+  }
+
+  /* Section header */
+  .section {
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed rgba(74,127,212,0.2);
+  }
+  .section-num {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 24px;
+    color: var(--red);
+    white-space: nowrap;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .section-desc {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* Question */
+  .question {
+    margin-bottom: 22px;
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .q-hint {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 8px;
+  }
+
+  /* Input - KV style */
+  .q-input {
+    width: 100%;
+    padding: 12px 14px;
+    background: white;
+    border: 2px dashed var(--blue);
+    border-radius: 10px;
+    color: var(--dark);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .q-input::placeholder {
+    color: #ccc;
+    font-size: 13px;
+  }
+  .q-input:focus {
+    border-color: var(--red);
+  }
+
+  /* Two-column row (kept for compatibility) */
+  .q-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  /* Full-width vertical stack */
+  .q-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .q-stack .question {
+    width: 100%;
+  }
+
+  /* Chip select */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--blue);
+    background: white;
+    color: var(--blue);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .chip.active, .chip:hover {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(232,64,87,0.06);
+  }
+
+  /* Self rating circles */
+  .rating-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .rating-circle {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 2px dashed var(--blue);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .rating-sm {
+    width: 38px; height: 38px;
+  }
+  .rating-half {
+    width: 24px; height: 24px;
+    border-width: 1.5px;
+    font-size: 0;
+    opacity: 0.5;
+  }
+  .rating-half.active, .rating-half:hover {
+    opacity: 1;
+  }
+  .rating-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .rating-circle.active, .rating-circle:hover {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(232,64,87,0.06);
+    border-style: solid;
+  }
+
+  /* Photo upload */
+  .photo-upload {
+    border: 3px dashed var(--blue);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+  }
+  .photo-upload:hover {
+    border-color: var(--red);
+  }
+  .photo-upload-icon {
+    font-size: 28px;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .photo-upload-text {
+    font-size: 13px;
+    color: #999;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 16px rgba(232,64,87,0.25);
+    transition: transform 0.2s;
+  }
+  .submit-btn:hover { transform: scale(1.02); }
+  .submit-hint {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* ===== PART 3: Output Card ===== */
+  .part3 {
+    background: var(--bg);
+    padding: 24px 16px 40px;
+    display: none;
+  }
+  .part3.active { display: block; }
+  .part3-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 28px;
+    color: var(--red);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .output-card {
+    background: white;
+    border: 2.5px dashed var(--blue);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .output-avatar-wrap {
+    margin-bottom: 12px;
+  }
+  .output-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: var(--light-blue);
+    border: 3px dashed var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    overflow: hidden;
+  }
+  .output-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .output-name {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 32px;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .output-meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 16px;
+  }
+  .output-divider {
+    height: 1px;
+    border: none;
+    border-top: 2px dashed rgba(74,127,212,0.15);
+    margin: 14px 0;
+  }
+  .output-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  .output-row-label {
+    color: #aaa;
+    flex-shrink: 0;
+  }
+  .output-row-value {
+    color: var(--dark);
+    font-weight: 700;
+    text-align: right;
+    max-width: 60%;
+  }
+  .output-bio {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--peach);
+    border: 2px dashed var(--red);
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--dark);
+    text-align: center;
+  }
+  .output-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .output-tag {
+    padding: 4px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    background: rgba(74,127,212,0.06);
+    color: var(--blue);
+    border: 1.5px solid var(--blue);
+  }
+.btn-export{background:linear-gradient(135deg,#E84057,#d63050);color:#fff;font-size:14px;padding:10px 24px;border:none;border-radius:20px;cursor:pointer;width:100%;font-weight:600}
+.btn-export:active{transform:scale(0.97)}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+
+<!-- ===== PART 1: KV Image ===== -->
+<div class="part1">
+  <div class="part1-inner">
+    <img src="cover.jpg" alt="我有一个朋友 PPT线上相亲大会">
+  </div>
+</div>
+
+<!-- ===== PART 2: Q&A Form ===== -->
+<div class="part2" id="part2">
+
+  <!-- 01 · 介绍一下 TA -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">介绍一下 TA</span>
+    </div>
+    <div class="section-desc">先让大家认识一下你这位朋友</div>
+
+    <div class="q-stack">
+      <div class="question">
+        <div class="q-text">怎么称呼你这位朋友？</div>
+        <input type="text" class="q-input" placeholder="大名、小名、外号都行" id="q-name">
+      </div>
+      <div class="question">
+        <div class="q-text">TA 今年芳龄几何？</div>
+        <input type="text" class="q-input" placeholder="说真的，别往小了报" id="q-age">
+      </div>
+    </div>
+
+    <div class="q-stack">
+      <div class="question">
+        <div class="q-text">用三个词形容一下 TA</div>
+        <div class="q-hint">MBTI、星座、性格都行，不知道就填"人类"</div>
+        <input type="text" class="q-input" placeholder="例：ENFJ / 话痨 / 好人" id="q-mbti">
+      </div>
+      <div class="question">
+        <div class="q-text">TA 在哪座城市发光发热？</div>
+        <input type="text" class="q-input" placeholder="城市 / 区域" id="q-city">
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · TA 的单身故事 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">TA 的单身故事</span>
+    </div>
+    <div class="section-desc">每段单身都有故事，说出来大家帮你分析分析</div>
+
+    <div class="question">
+      <div class="q-text">TA 单身多久了？是刚恢复自由身还是资深选手？</div>
+      <input type="text" class="q-input" placeholder="例：3年了，快熬成仙了" id="q-single-since">
+    </div>
+
+    <div class="question">
+      <div class="q-text">说真的，你觉得 TA 一直单着是因为啥？</div>
+      <div class="q-hint">选一个最接近的，也可以自己在下面补充</div>
+      <div class="chip-group" id="chip-reason">
+        <button class="chip" data-value="眼光太高">眼光太高</button>
+        <button class="chip" data-value="太宅了">太宅了</button>
+        <button class="chip" data-value="太忙了">太忙了</button>
+        <button class="chip" data-value="没人追">没人追</button>
+        <button class="chip" data-value="懒得社交">懒得社交</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">TA 在这个城市混得还行吗？</div>
+      <div class="chip-group" id="chip-status">
+        <button class="chip" data-value="还挺滋润的">😐 还挺滋润的</button>
+        <button class="chip" data-value="凑合活着">😅 凑合活着</button>
+        <button class="chip" data-value="想跑了">🏃 想跑了</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 · TA 的闪光点 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">TA 的闪光点</span>
+    </div>
+    <div class="section-desc">你是 TA 的朋友，你最懂 TA 有多好</div>
+
+    <div class="question">
+      <div class="q-text">如果 TA 找对象只能提一个要求，你觉得 TA 会说什么？</div>
+      <div class="q-hint">不是条件清单，是最在意的那个</div>
+      <input type="text" class="q-input" placeholder="例：能接受 TA 养猫、别嫌弃 TA 话多" id="q-deal-maker">
+    </div>
+
+    <div class="question">
+      <div class="q-text">硬要夸 TA 的话，TA 身上最拿得出手的是什么？</div>
+      <div class="q-hint">做饭好吃、情绪稳定、长得还行……都行</div>
+      <input type="text" class="q-input" placeholder="例：厨艺挺好，话少爱干净" id="q-best-side">
+    </div>
+
+    <div class="question">
+      <div class="q-text">下了班或者周末，TA 都在忙什么？</div>
+      <div class="q-hint">这才是 TA 最真实的样子</div>
+      <input type="text" class="q-input" placeholder="例：在家刷小红书、偶尔运动、约饭" id="q-lifestyle">
+    </div>
+
+    <div class="question">
+      <div class="q-text">你觉得 TA 心里最舒服的生活是什么样的？</div>
+      <div class="chip-group" id="chip-ideal">
+        <button class="chip" data-value="有老有小，安安稳稳">🏠 有老有小，安安稳稳</button>
+        <button class="chip" data-value="搞事业，搞钱">💼 搞事业，搞钱</button>
+        <button class="chip" data-value="开心就行，随缘">🍀 开心就行，随缘</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 · 最后一把推 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">最后一把推</span>
+    </div>
+    <div class="section-desc">帮 TA 争取一下，万一就成了呢</div>
+
+    <div class="question">
+      <div class="q-text">抛开友情滤镜，你给 TA 颜值打几分？</div>
+      <div class="q-hint">10 分制，选一个你觉得最合适的</div>
+      <div class="rating-group" id="rating-group">
+        <div class="rating-circle" data-value="1">1</div>
+        <div class="rating-circle" data-value="2">2</div>
+        <div class="rating-circle" data-value="3">3</div>
+        <div class="rating-circle" data-value="4">4</div>
+        <div class="rating-circle" data-value="5">5</div>
+        <div class="rating-circle" data-value="6">6</div>
+        <div class="rating-circle" data-value="7">7</div>
+        <div class="rating-circle" data-value="8">8</div>
+        <div class="rating-circle" data-value="9">9</div>
+        <div class="rating-circle" data-value="10">10</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">替 TA 给未来的那个 TA 留句话吧</div>
+      <div class="q-hint">走心、搞笑、土味情话都行</div>
+      <input type="text" class="q-input" placeholder="例：我朋友做饭巨好吃，就是有点粘人，你捡不捡" id="q-last-words">
+    </div>
+
+    <div class="question">
+      <div class="q-text">手上有 TA 的照片吗？</div>
+      <div class="q-hint">好看的、搞笑的、生活照都行（可选）</div>
+      <div class="photo-upload" id="photo-upload" onclick="document.getElementById('file-input').click()">
+        <div class="photo-upload-icon">☁️</div>
+        <div class="photo-upload-text">点击上传 TA 的照片</div>
+      </div>
+      <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handlePhoto(event)">
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <button class="submit-btn" id="btn-generate" onclick="generateAndExport()">帮 TA 生成档案 💫</button>
+  <div class="submit-hint" id="submit-hint">生成后可长按图片保存 · 直接传播</div>
+  
+  <!-- Export preview (shown after generation) -->
+  <div id="export-preview" style="display:none;text-align:center;padding:20px 16px 40px;background:var(--bg);">
+    <p style="font-size:15px;color:#999;margin-bottom:12px;">✅ 已生成</p>
+    
+    <!-- 封面图 -->
+    <div style="margin-bottom:24px;">
+      <p style="font-size:13px;color:#aaa;margin-bottom:8px;">📢 封面图</p>
+      <div id="cover-preview-img" style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"></div>
+    </div>
+    
+    <!-- 档案图 -->
+    <div style="margin-bottom:24px;">
+      <p style="font-size:13px;color:#aaa;margin-bottom:8px;">📋 TA的档案</p>
+      <div id="profile-preview-img" style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"></div>
+    </div>
+    
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="submit-btn" id="btn-share-cover" style="background:linear-gradient(135deg,#4A7FD4,#3A6BB4);flex:1;min-width:140px;">📤 分享封面</button>
+      <button class="submit-btn" id="btn-share-profile" style="background:linear-gradient(135deg,#4CAF50,#388E3C);flex:1;min-width:140px;">📤 分享档案</button>
+    </div>
+    <p style="font-size:12px;color:#bbb;margin-top:10px;line-height:1.5;">分享后可选择存储图像到相册</p>
+  </div>
+</div>
+
+<!-- ===== PART 3: Output Card (Template) ===== -->
+<div class="part3" id="part3">
+  <div class="tpl-card">
+    <div class="tpl-img-box">
+      <img src="template.jpg" class="tpl-img" alt="好朋友推荐档案">
+      <div class="tpl-data">
+        <div class="tpl-ava" id="tc-avatar">
+          <svg viewBox="0 0 50 50" width="50" height="50"><circle cx="25" cy="18" r="10" fill="#ddd"/><path d="M10 46Q10 32 25 30Q40 32 40 46Z" fill="#ddd"/></svg>
+        </div>
+        <div class="tpl-nm" id="tc-name">周翊然</div>
+        <div class="tpl-sub" id="tc-meta">33岁 · 库萨狂拽炫 · 北京上海两地飞</div>
+        <div class="tpl-list">
+          <div class="tl"><span>单身多久</span><b id="tc-single">1天昨天刚分手</b></div>
+          <div class="tl"><span>单身原因</span><b id="tc-reason">太忙了</b></div>
+          <div class="tl"><span>城市状态</span><b id="tc-status">想跑了</b></div>
+          <div class="td"></div>
+          <div class="tl"><span>TA的底线</span><b id="tc-deal">废话不能多</b></div>
+          <div class="tl"><span>最拿得出手的</span><b id="tc-best">屁股特翘</b></div>
+          <div class="tl"><span>平时在干嘛</span><b id="tc-life">运动爬山睡觉抠鼻屎</b></div>
+          <div class="tl"><span>理想日常</span><b id="tc-ideal">开心就行，随缘</b></div>
+          <div class="td"></div>
+          <div class="tl"><span>颜值打分</span><b id="tc-rating">10/10</b></div>
+        </div>
+        <div class="tpl-bio" id="tc-bio">「没啥可说的 人好就行」</div>
+        <div class="tpl-tags" id="tc-tags">
+          <span>库萨狂拽炫</span><span>北京上海两地飞</span><span>运动爬山睡觉抠鼻屎</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.part3{background:var(--bg);padding:16px 0 30px;display:none}
+.part3.active{display:block}
+.tpl-card{width:420px;margin:0 auto}
+.tpl-img-box{position:relative;width:420px;height:560px;overflow:hidden;border-radius:6px}
+.tpl-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.tpl-data{position:absolute;top:66px;left:24px;right:24px;bottom:70px;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
+.tpl-header{text-align:center}
+.tpl-ava{width:60px;height:60px;border-radius:50%;overflow:hidden;margin:0 auto 6px}
+.tpl-ava img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.tpl-nm{font-size:36px;font-weight:800;color:#1a1a1a;letter-spacing:2px}
+.tpl-sub{font-size:15px;color:#aaa;margin-top:4px;font-weight:500}
+.tpl-body{display:flex;flex-direction:column;gap:1px}
+.tl{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0}
+.tl .label{color:#ccc;font-size:14px;flex-shrink:0;font-weight:400;white-space:nowrap;padding-top:1px}
+.tl .value{color:#1a1a1a;font-weight:700;font-size:15px;text-align:right;max-width:58%;line-height:1.4;word-break:break-all;white-space:normal}
+.tl .value.em{color:#E84057;font-size:16px;font-weight:800}
+.td{border:none;border-top:1px dashed rgba(0,0,0,0.1);margin:6px 0}
+.tpl-bio{padding:8px 14px;background:rgba(232,64,87,0.06);border-radius:6px;font-size:14px;color:#666;text-align:center;line-height:1.5}
+.tpl-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.tpl-tags span{padding:2px 10px;border-radius:8px;font-size:12px;background:rgba(232,64,87,0.05);color:var(--red);border:1px solid rgba(232,64,87,0.12);font-weight:500}
+</style>
+<script>
+  // Chip selection
+  document.querySelectorAll('.chip-group').forEach(group => {
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+  });
+
+  // Rating selection
+  document.querySelectorAll('.rating-circle').forEach(circle => {
+    circle.addEventListener('click', () => {
+      document.querySelectorAll('.rating-circle').forEach(c => c.classList.remove('active'));
+      circle.classList.add('active');
+    });
+  });
+
+  // Photo handling
+  let uploadedPhoto = null;
+  function handlePhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      uploadedPhoto = e.target.result;
+      document.getElementById('photo-upload').innerHTML =
+        '<img src="' + uploadedPhoto + '" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px dashed #4A7FD4;">';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Generate profile (template-based)
+  // skipShow=true: fill template silently without showing Part 3 (used by generateAndExport)
+  function generateProfile(skipShow) {
+    const name = document.getElementById('q-name').value || '匿名';
+    const age = document.getElementById('q-age').value || '?';
+    const mbti = document.getElementById('q-mbti').value || '?';
+    const city = document.getElementById('q-city').value || '?';
+    const singleSince = document.getElementById('q-single-since').value || '-';
+    const reasonChip = document.querySelector('#chip-reason .chip.active');
+    const reason = reasonChip ? reasonChip.dataset.value : '-';
+    const statusChip = document.querySelector('#chip-status .chip.active');
+    const status = statusChip ? statusChip.dataset.value : '-';
+    const dealMaker = document.getElementById('q-deal-maker').value || '-';
+    const bestSide = document.getElementById('q-best-side').value || '-';
+    const lifestyle = document.getElementById('q-lifestyle').value || '-';
+    const idealChip = document.querySelector('#chip-ideal .chip.active');
+    const ideal = idealChip ? idealChip.dataset.value : '-';
+    const ratingCircle = document.querySelector('#rating-group .rating-circle.active');
+    const rating = ratingCircle ? ratingCircle.dataset.value + '/10' : '-';
+    const lastWords = document.getElementById('q-last-words').value;
+
+    // Fill template output
+    document.getElementById('tc-name').textContent = name;
+    document.getElementById('tc-meta').textContent = [age + '岁', mbti, city].filter(Boolean).join(' · ');
+
+    if (uploadedPhoto) {
+      document.getElementById('tc-avatar').innerHTML = '<img src="' + uploadedPhoto + '">';
+    }
+
+    document.getElementById('tc-single').textContent = singleSince;
+    document.getElementById('tc-reason').textContent = reason;
+    document.getElementById('tc-status').textContent = status;
+    document.getElementById('tc-deal').textContent = dealMaker;
+    document.getElementById('tc-best').textContent = bestSide;
+    document.getElementById('tc-life').textContent = lifestyle;
+    document.getElementById('tc-ideal').textContent = ideal;
+    document.getElementById('tc-rating').textContent = rating;
+
+    const bio = document.getElementById('tc-bio');
+    if (lastWords) {
+      bio.style.display = 'block';
+      bio.textContent = '「' + lastWords + '」';
+    } else {
+      bio.style.display = 'none';
+    }
+
+    // Tags
+    const tagsContainer = document.getElementById('tc-tags');
+    tagsContainer.innerHTML = '';
+    [mbti, city, lifestyle].filter(v => v && v !== '-' && v !== '?').forEach(v => {
+      const tag = document.createElement('span');
+      tag.className = 'tc-tag';
+      tag.textContent = v;
+      tagsContainer.appendChild(tag);
+    });
+
+    // Show part 3 only if not skipping
+    if (!skipShow) {
+      document.getElementById('part3').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('part3').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }
+
+  // Combined: fill template + generate cover + generate profile JPG + show preview (one-step flow)
+  function generateAndExport() {
+    var btn = document.getElementById('btn-generate');
+    if (btn) { btn.textContent = '生成中…'; btn.disabled = true; }
+
+    generateProfile(true);
+
+    var name    = document.getElementById('tc-name')   ? document.getElementById('tc-name').textContent   : '';
+    var meta    = document.getElementById('tc-meta')   ? document.getElementById('tc-meta').textContent   : '';
+    var single  = document.getElementById('tc-single') ? document.getElementById('tc-single').textContent : '';
+    var reason  = document.getElementById('tc-reason') ? document.getElementById('tc-reason').textContent : '';
+    var status  = document.getElementById('tc-status') ? document.getElementById('tc-status').textContent : '';
+    var deal    = document.getElementById('tc-deal')   ? document.getElementById('tc-deal').textContent   : '';
+    var best    = document.getElementById('tc-best')   ? document.getElementById('tc-best').textContent   : '';
+    var life    = document.getElementById('tc-life')   ? document.getElementById('tc-life').textContent   : '';
+    var ideal   = document.getElementById('tc-ideal')  ? document.getElementById('tc-ideal').textContent  : '';
+    var rating  = document.getElementById('tc-rating') ? document.getElementById('tc-rating').textContent : '';
+    var bio     = document.getElementById('tc-bio')    ? document.getElementById('tc-bio').textContent    : '';
+    var tagsEl  = document.getElementById('tc-tags');
+    var tagsHtml = tagsEl ? tagsEl.innerHTML : '';
+
+    // 从"最拿得出手"的描述中提取核心词
+    function extractCore(text) {
+      if (!text || text === '-' || text === '?') return 'TA';
+      var t = text.replace(/[，,、。！？!？\s]+/g, ' ').trim();
+      var map = [
+        ['身高', ['身高', '高', '个子']],
+        ['身材', ['身材', '瘦', '胖', '苗条', '匀称', '腹肌', '胸肌', '大长腿', '腿长']],
+        ['厨艺', ['厨艺', '做饭', '做菜', '会做']],
+        ['颜值', ['颜值', '帅', '美', '好看', '漂亮', '清秀']],
+        ['性格', ['性格', '温柔', '体贴', '细心', '靠谱', '幽默', '有趣', '好玩', '搞笑']],
+        ['才华', ['才华', '有才', '聪明', '智慧', '学识', '知识']],
+        ['衣品', ['衣品', '穿搭', '穿衣', '会穿', '潮']],
+        ['声音', ['声音', '声线', '嗓音', '好听']],
+        ['情绪', ['情绪稳定', '稳定', '脾气好']],
+        ['工作', ['工作', '事业', '上进', '搞钱', '努力']],
+        ['生活', ['生活', '会生活', '精致', '有趣']],
+        ['气质', ['气质', '气场', '优雅', '大方']],
+      ];
+      for (var i = 0; i < map.length; i++) {
+        var keywords = map[i][1];
+        for (var j = 0; j < keywords.length; j++) {
+          if (t.indexOf(keywords[j]) !== -1) return map[i][0];
+        }
+      }
+      return t.substring(0, Math.min(t.length, 4));
+    }
+    var core = extractCore(best);
+
+    // ===== Cover: 白底大字报 "比 XXX 招亲" (1200×1600) =====
+    var coverWrap = document.createElement('div');
+    coverWrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:1200px;height:1600px;overflow:hidden;';
+    coverWrap.innerHTML =
+      '<div style="position:relative;width:1200px;height:1600px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,\'PingFang SC\',\'Helvetica Neue\',Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">' +
+      // 背景问号装饰
+      '<div style="position:absolute;top:60px;left:80px;font-size:180px;color:rgba(0,0,0,0.03);font-weight:900;transform:rotate(-15deg);">?</div>' +
+      '<div style="position:absolute;top:200px;right:100px;font-size:240px;color:rgba(0,0,0,0.03);font-weight:900;transform:rotate(20deg);">?</div>' +
+      '<div style="position:absolute;bottom:400px;left:60px;font-size:200px;color:rgba(0,0,0,0.03);font-weight:900;transform:rotate(-25deg);">?</div>' +
+      '<div style="position:absolute;bottom:200px;right:80px;font-size:260px;color:rgba(0,0,0,0.03);font-weight:900;transform:rotate(10deg);">?</div>' +
+      '<div style="position:absolute;top:600px;left:50%;transform:translateX(-50%);font-size:300px;color:rgba(0,0,0,0.025);font-weight:900;">?</div>' +
+      // 小问号点缀
+      '<div style="position:absolute;top:400px;left:200px;font-size:80px;color:rgba(0,0,0,0.04);font-weight:900;transform:rotate(-10deg);">?</div>' +
+      '<div style="position:absolute;top:800px;right:200px;font-size:60px;color:rgba(0,0,0,0.04);font-weight:900;transform:rotate(15deg);">?</div>' +
+      '<div style="position:absolute;bottom:600px;left:300px;font-size:50px;color:rgba(0,0,0,0.04);font-weight:900;transform:rotate(-20deg);">?</div>' +
+      '<div style="position:absolute;bottom:100px;left:150px;font-size:70px;color:rgba(0,0,0,0.04);font-weight:900;transform:rotate(5deg);">?</div>' +
+      '<div style="position:absolute;top:100px;right:300px;font-size:90px;color:rgba(0,0,0,0.04);font-weight:900;transform:rotate(-8deg);">?</div>' +
+      // 主内容区
+      '<div style="position:relative;z-index:2;text-align:center;">' +
+        '<div style="font-size:140px;font-weight:900;color:#1a1a1a;letter-spacing:8px;margin-bottom:30px;line-height:1;">比</div>' +
+        // 核心词 + 蓝色涂鸦
+        '<div style="position:relative;display:inline-block;margin-bottom:30px;">' +
+          '<div style="position:absolute;top:-20px;left:-30px;right:-30px;bottom:-10px;background:#4A7FD4;border-radius:50% 60% 40% 50%/55% 45% 55% 45%;opacity:0.25;transform:rotate(-2deg);"></div>' +
+          '<div style="position:relative;font-size:160px;font-weight:900;color:#1a1a1a;letter-spacing:12px;line-height:1;">' + core + '</div>' +
+        '</div>' +
+        '<div style="font-size:140px;font-weight:900;color:#1a1a1a;letter-spacing:8px;margin-top:30px;line-height:1;">招亲</div>' +
+      '</div>' +
+      // 底部副标题
+      '<div style="position:absolute;bottom:100px;font-size:36px;color:#ccc;font-weight:500;letter-spacing:4px;">我有一个朋友 \u00b7 PPT\u76f8\u4eb2\u5927\u4f1a</div>' +
+      '</div>';
+    document.body.appendChild(coverWrap);
+
+    html2canvas(coverWrap.firstChild, {
+      width: 1200, height: 1600, scale: 1,
+      useCORS: true, backgroundColor: '#ffffff', logging: false
+    }).then(function(coverCanvas) {
+      document.body.removeChild(coverWrap);
+      var coverUrl = coverCanvas.toDataURL('image/jpeg', 0.93);
+
+      // ===== Profile: 1200\u00d71600 card =====
+      var profWrap = document.createElement('div');
+      profWrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:1200px;height:1600px;overflow:hidden;';
+      profWrap.innerHTML = '<div style="position:relative;width:1200px;height:1600px;overflow:hidden;">' +
+        '<img src="template.jpg" style="position:absolute;top:0;left:0;width:1200px;height:1600px;display:block;" crossorigin="anonymous">' +
+        '<div style="position:absolute;top:290px;left:80px;right:80px;bottom:195px;display:flex;flex-direction:column;justify-content:space-between;font-family:-apple-system,BlinkMacSystemFont,\'PingFang SC\',\'Helvetica Neue\',Arial,sans-serif;overflow:hidden;">' +
+          '<div style="text-align:center;flex-shrink:0;padding-bottom:12px;">' +
+            '<div style="font-size:88px;font-weight:800;color:#1a1a1a;letter-spacing:4px;line-height:1.15;">' + name + '</div>' +
+            '<div style="font-size:36px;color:#999;line-height:1.5;margin-top:4px;">' + meta + '</div>' +
+          '</div>' +
+          '<div style="display:flex;flex-direction:column;flex-shrink:0;">' +
+            exRow('\u5355\u8eab\u591a\u4e45', single, true) +
+            exRow('\u5355\u8eab\u539f\u56e0', reason, false) +
+            exRow('\u57ce\u5e02\u72b6\u6001', status, true) +
+            '<div style="border-top:3px dashed rgba(0,0,0,0.1);margin:14px 0;"></div>' +
+            exRow('TA\u7684\u5e95\u7ebf', deal, true) +
+            exRow('\u6700\u62ff\u5f97\u51fa\u624b', core, false) +
+            exRow('\u5e73\u65f6\u5728\u561b\u5462', life, false) +
+            exRow('\u7406\u60f3\u65e5\u5e38', ideal, true) +
+            '<div style="border-top:3px dashed rgba(0,0,0,0.1);margin:14px 0;"></div>' +
+            exRow('\u989c\u503c\u6253\u5206', rating, true, true) +
+          '</div>' +
+          '<div style="padding:16px 28px;background:rgba(232,64,87,0.07);border-radius:20px;font-size:36px;color:#666;text-align:center;line-height:1.5;flex-shrink:0;">' + bio + '</div>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;flex-shrink:0;">' + exTags(tagsHtml) + '</div>' +
+        '</div>' +
+      '</div>';
+      document.body.appendChild(profWrap);
+
+      html2canvas(profWrap.firstChild, {
+        width: 1200, height: 1600, scale: 1,
+        useCORS: true, backgroundColor: '#ffffff', logging: false
+      }).then(function(profCanvas) {
+        document.body.removeChild(profWrap);
+        var profUrl = profCanvas.toDataURL('image/jpeg', 0.93);
+
+        var preview = document.getElementById('export-preview');
+        var coverImg = document.getElementById('cover-preview-img');
+        var profImg = document.getElementById('profile-preview-img');
+        var btnShareCover = document.getElementById('btn-share-cover');
+        var btnShareProf = document.getElementById('btn-share-profile');
+
+        if (preview && coverImg && profImg) {
+          coverImg.innerHTML = '<img src="' + coverUrl + '" style="width:100%;height:auto;display:block;" alt="\u5c01\u9762">';
+          profImg.innerHTML = '<img src="' + profUrl + '" style="width:100%;height:auto;display:block;" alt="\u6863\u6848">';
+          preview.style.display = 'block';
+
+          if (btnShareCover && navigator.share) {
+            btnShareCover.onclick = function() {
+              coverCanvas.toBlob(function(b) {
+                var file = new File([b], '\u6bd4' + core + '\u62db\u4eb2.jpg', { type: 'image/jpeg' });
+                navigator.share({ files: [file], title: '\u6bd4' + core + '\u62db\u4eb2' }).catch(function(){});
+              }, 'image/jpeg', 0.93);
+            };
+          } else if (btnShareCover) { btnShareCover.style.display = 'none'; }
+
+          if (btnShareProf && navigator.share) {
+            btnShareProf.onclick = function() {
+              profCanvas.toBlob(function(b) {
+                var file = new File([b], 'TA\u7684\u6863\u6848.jpg', { type: 'image/jpeg' });
+                navigator.share({ files: [file], title: 'TA\u7684\u6863\u6848' }).catch(function(){});
+              }, 'image/jpeg', 0.93);
+            };
+          } else if (btnShareProf) { btnShareProf.style.display = 'none'; }
+
+          setTimeout(function() {
+            preview.scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }
+        if (btn) { btn.textContent = '\u5e2e TA \u751f\u6210\u6863\u6848 \ud83d\udcab'; btn.disabled = false; }
+      }).catch(function(e) {
+        console.error('Profile error:', e);
+        if (btn) { btn.textContent = '\u5e2e TA \u751f\u6210\u6863\u6848 \ud83d\udcab'; btn.disabled = false; }
+      });
+    }).catch(function(e) {
+      console.error('Cover error:', e);
+      if (btn) { btn.textContent = '\u5e2e TA \u751f\u6210\u6863\u6848 \ud83d\udcab'; btn.disabled = false; }
+    });
+  }
+
+  function exRow(label, value, em, big) {
+    var valStyle = 'text-align:right;max-width:62%;line-height:1.4;word-break:break-all;white-space:normal;' +
+      (em ? 'color:#E84057;font-weight:800;font-size:' + (big ? '52px' : '42px') + ';'
+          : 'color:#1a1a1a;font-weight:700;font-size:40px;');
+    return '<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;">' +
+      '<span style="color:#bbb;font-size:34px;flex-shrink:0;white-space:nowrap;padding-top:4px;">' + label + '</span>' +
+      '<span style="' + valStyle + '">' + value + '</span>' +
+    '</div>';
+  }
+
+  function exTags(html) {
+    // Re-wrap each span with full-size styling
+    return html.replace(/<span[^>]*>/g,
+      '<span style="padding:8px 28px;border-radius:24px;font-size:30px;background:rgba(232,64,87,0.05);color:#E84057;border:2px solid rgba(232,64,87,0.15);">');
+  }
+</script>
+
+</body>
+</html>
+<!-- v2026-04-24-2009 template fix -->
