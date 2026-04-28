@@ -209,29 +209,6 @@
     border-style: solid;
   }
 
-  /* Photo upload */
-  .photo-upload {
-    border: 3px dashed var(--blue);
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: white;
-  }
-  .photo-upload:hover {
-    border-color: var(--red);
-  }
-  .photo-upload-icon {
-    font-size: 28px;
-    color: var(--blue);
-    margin-bottom: 6px;
-  }
-  .photo-upload-text {
-    font-size: 13px;
-    color: #999;
-  }
-
   /* Submit button */
   .submit-btn {
     display: block;
@@ -508,15 +485,6 @@
       <input type="text" class="q-input" placeholder="例：我朋友做饭巨好吃，就是有点粘人，你捡不捡" id="q-last-words">
     </div>
 
-    <div class="question">
-      <div class="q-text">手上有 TA 的照片吗？</div>
-      <div class="q-hint">好看的、搞笑的、生活照都行（可选）</div>
-      <div class="photo-upload" id="photo-upload" onclick="document.getElementById('file-input').click()">
-        <div class="photo-upload-icon">☁️</div>
-        <div class="photo-upload-text">点击上传 TA 的照片</div>
-      </div>
-      <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handlePhoto(event)">
-    </div>
   </div>
 
   <!-- Submit -->
@@ -620,20 +588,6 @@
     });
   });
 
-  // Photo handling
-  let uploadedPhoto = null;
-  function handlePhoto(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      uploadedPhoto = e.target.result;
-      document.getElementById('photo-upload').innerHTML =
-        '<img src="' + uploadedPhoto + '" style="width:72px;height:72px;border-radius:12px;object-fit:cover;border:3px dashed #4A7FD4;">';
-    };
-    reader.readAsDataURL(file);
-  }
-
   // Generate profile (template-based)
   // skipShow=true: fill template silently without showing Part 3 (used by generateAndExport)
   function generateProfile(skipShow) {
@@ -658,10 +612,6 @@
     // Fill template output
     document.getElementById('tc-name').textContent = name;
     document.getElementById('tc-meta').textContent = [age + '岁', mbti, city].filter(Boolean).join(' · ');
-
-    if (uploadedPhoto) {
-      document.getElementById('tc-avatar').innerHTML = '<img src="' + uploadedPhoto + '">';
-    }
 
     document.getElementById('tc-single').textContent = singleSince;
     document.getElementById('tc-reason').textContent = reason;
